@@ -1,0 +1,199 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Rmd Tutorial},
+  pdfauthor={myself},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[left = 3cm, right = 3cm, top = 3cm, bottom = 3cms]{geometry}
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{Rmd Tutorial}
+\author{myself}
+\date{24/02/2019}
+
+\begin{document}
+\maketitle
+
+Tutorial link:
+\url{https://ourcodingclub.github.io/tutorials/rmarkdown/\#create}
+
+\includegraphics{tutorial_test_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\hypertarget{tables}{%
+\section{Tables}\label{tables}}
+
+\hypertarget{kable}{%
+\subsection{Kable}\label{kable}}
+
+\begin{longtable}[]{@{}lr@{}}
+\toprule
+A & B\tabularnewline
+\midrule
+\endhead
+a & 5\tabularnewline
+a & 10\tabularnewline
+b & 15\tabularnewline
+b & 20\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{more-flexible-tables}{%
+\subsection{More flexible tables}\label{more-flexible-tables}}
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+\begin{minipage}[b]{0.10\columnwidth}\centering
+plant\strut
+\end{minipage} & \begin{minipage}[b]{0.18\columnwidth}\centering
+temperature\strut
+\end{minipage} & \begin{minipage}[b]{0.11\columnwidth}\centering
+growth\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.10\columnwidth}\centering
+a\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\centering
+20\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+\emph{0.65}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\centering
+b\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\centering
+20\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+\emph{0.95}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\centering
+c\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\centering
+20\strut
+\end{minipage} & \begin{minipage}[t]{0.11\columnwidth}\centering
+\emph{0.15}\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{manual-table-with-markdown-syntax}{%
+\subsection{Manual table with Markdown
+syntax}\label{manual-table-with-markdown-syntax}}
+
+\begin{longtable}[]{@{}lcr@{}}
+\toprule
+Plant & Temp. & Growth\tabularnewline
+\midrule
+\endhead
+A & 20 & 0.65\tabularnewline
+B & 20 & 0.95\tabularnewline
+C & 20 & 0.15\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{table-from-model-output-using-tidy-from-pkg-broom}{%
+\subsection{Table from model output using tidy from pkg
+broom}\label{table-from-model-output-using-tidy-from-pkg-broom}}
+
+\begin{longtable}[]{@{}ccccc@{}}
+\toprule
+\begin{minipage}[b]{0.17\columnwidth}\centering
+term\strut
+\end{minipage} & \begin{minipage}[b]{0.13\columnwidth}\centering
+estimate\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\centering
+std.error\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\centering
+statistic\strut
+\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\centering
+p.value\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.17\columnwidth}\centering
+(Intercept)\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+25\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+4.07e-15\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+6.14e+15\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+1.04e-16\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\centering
+B\strut
+\end{minipage} & \begin{minipage}[t]{0.13\columnwidth}\centering
+-5\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+1.88e-15\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+-2.65e+15\strut
+\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\centering
+2.4e-16\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\end{document}

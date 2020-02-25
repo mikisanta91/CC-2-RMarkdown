@@ -1,6 +1,75 @@
 ---
 title: "Rmd Tutorial"
 author: "myself"
-date: 24/02/2019
-output: html_document
+date: 24/02/2019 
+output: pdf_document
+latex_engine: pdflatex
+geometry: left = 3cm, right = 3cm, top = 3cm, bottom = 3cms
 ---
+
+Tutorial link: https://ourcodingclub.github.io/tutorials/rmarkdown/#create
+
+```{r, echo=FALSE}
+  # install.packages("knitr")
+  # install.packages("pander")
+  # install.packages("broom")
+  library(knitr) 
+  library(pander) # create customizable tables from dataframes
+  library(broom) # create tables from model outputs
+```
+
+
+```{r, echo=FALSE}
+  norm <- rnorm(100, mean = 0, sd = 1)
+```
+
+```{r, echo=FALSE}
+A <- c("a", "a", "b", "b")
+B <- c(5, 10, 15, 20)
+dataframe <- data.frame(A, B)
+```
+
+```{r, echo=FALSE, fig.width = 4, fig.height = 3}
+  plot(dataframe)
+```
+
+# Tables
+
+## Kable
+```{r, echo=FALSE}
+  kable(dataframe, digits = 2)
+```
+
+## More flexible tables
+<center>
+```{r echo=FALSE}
+  plant <- c("a", "b", "c")
+  temperature <- c(20, 20, 20)
+  growth <- c(0.65, 0.95, 0.15)
+  dataframe <- data.frame(plant, temperature, growth)
+  emphasize.italics.cols(3)   # Make the 3rd column italics
+    pander(dataframe)           # Create the table
+```
+</center>
+<br>
+
+## Manual table with Markdown syntax
+| Plant | Temp. | Growth |
+|:------|:-----:|-------:|
+| A     | 20    | 0.65   |
+| B     | 20    | 0.95   |
+| C     | 20    | 0.15   |
+
+<br>
+
+## Table from model output using tidy from pkg broom
+```{r echo=FALSE, warning=FALSE, paged.print=FALSE}
+  A <- c(20, 15, 10)
+  B <- c(1, 2, 3)
+  
+  lm_test <- lm(A ~ B)            # Creating linear model 
+  #summary(lm_test)                # Obtaining linear model summary statistics
+  
+  table_obj <- tidy(lm_test)      # Using tidy() to create a new R object called table 
+  pander(table_obj, digits = 3)   # Using pander() to view the created table, with 3 sig figs 
+```
